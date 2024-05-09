@@ -1,4 +1,4 @@
-param repositoryUrl string = 'https://github.com/'
+param repositoryUrl string = 'https://github.com/randallthornton/azure-learning'
 
 resource appServicePlan 'Microsoft.Web/serverfarms@2023-12-01' = {
   name: 'appServicePlan'
@@ -9,7 +9,7 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2023-12-01' = {
   }
 }
 resource webApplication 'Microsoft.Web/sites@2023-12-01' = {
-  name: 'webApplication'
+  name: 'az-learn-web-app-89'
   location: resourceGroup().location
   properties: {
     serverFarmId: appServicePlan.id
