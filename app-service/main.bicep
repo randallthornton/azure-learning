@@ -1,7 +1,10 @@
 param repositoryUrl string = 'https://github.com/randallthornton/azure-learning'
+param appServicePlanName string = 'appServicePlan'
+param webAppName string 
+
 
 resource appServicePlan 'Microsoft.Web/serverfarms@2023-12-01' = {
-  name: 'appServicePlan'
+  name: appServicePlanName
   location: resourceGroup().location
   sku: {
     name: 'F1'
@@ -9,7 +12,7 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2023-12-01' = {
   }
 }
 resource webApplication 'Microsoft.Web/sites@2023-12-01' = {
-  name: 'az-learn-web-app-89'
+  name: webAppName
   location: resourceGroup().location
   properties: {
     serverFarmId: appServicePlan.id
@@ -27,9 +30,11 @@ resource webApplication 'Microsoft.Web/sites@2023-12-01' = {
 resource srcControls 'Microsoft.Web/sites/sourcecontrols@2023-12-01' = {
   parent: webApplication
   name: 'web'
+  kind: 'GitHub'
   properties: {
     repoUrl: repositoryUrl
     branch: 'main'
+    
     isManualIntegration: true
   }
 }
