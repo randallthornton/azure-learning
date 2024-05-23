@@ -1,0 +1,6 @@
+@entra_id_backend_HostAddress = http://localhost:5095
+
+GET {{entra_id_backend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
