@@ -1,8 +1,8 @@
 
 // Event Hub
 
-resource ehnamespace 'Microsoft.EventHub/namespaces@2024-01-01' = {
-  name: 'eventhub-ns'
+resource ehnamespace 'Microsoft.EventHub/namespaces@2021-11-01' = {
+  name: 'eventhub-ns-randong'
   location: resourceGroup().location
   sku: {
     name: 'Standard'
@@ -15,11 +15,12 @@ resource ehnamespace 'Microsoft.EventHub/namespaces@2024-01-01' = {
   }
 }
 
-resource eventHub 'Microsoft.EventHub/namespaces/eventhubs@2024-01-01' = {
+resource eventHub 'Microsoft.EventHub/namespaces/eventhubs@2021-11-01' = {
   parent: ehnamespace
   name: 'eventhub'
   properties: {
     messageRetentionInDays: 1
     partitionCount: 1
+    status: 'Active'
   }
 }
